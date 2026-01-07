@@ -56,8 +56,9 @@ if prompt := st.chat_input("Ví dụ: 'Làm sao tính điểm hòa vốn?'"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
-    with st.spinner("Chuyên gia đang suy nghĩ..."):
+    with st.spinner("Đang suy nghĩ..."):
         reply = ask_ai(prompt)
     
     st.session_state.messages.append({"role": "assistant", "content": reply})
+
     st.chat_message("assistant").write(reply)
