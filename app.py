@@ -2,9 +2,7 @@ import streamlit as st
 import requests
 import os
 
-# === CẤU HÌNH ===
-# Streamlit sẽ đọc API key từ biến môi trường (an toàn hơn khi deploy)
-API_KEY = st.secrets["CHATBOT_API_KEY"]  # ← sẽ cấu hình sau
+API_KEY = st.secrets["CHATBOT_API_KEY"] 
 MODEL = "mistralai/mistral-7b-instruct"
 
 SYSTEM_PROMPT = (
@@ -19,7 +17,7 @@ def ask_ai(prompt):
             url="https://openrouter.ai/api/v1/chat/completions",
             headers={
                 "Authorization": f"Bearer {API_KEY}",
-                "HTTP-Referer": "https://yourname.streamlit.app",  # thay bằng link của bạn sau
+                "HTTP-Referer": "https://yourname.streamlit.app", 
                 "X-Title": "Business Expert Chatbot"
             },
             json={
@@ -38,20 +36,20 @@ def ask_ai(prompt):
     except Exception as e:
         return f"❌ Lỗi kết nối: {str(e)}"
 
-# === GIAO DIỆN STREAMLIT ===
+# giao diện
 st.set_page_config(page_title="Chuyên Gia Kinh Doanh AI", page_icon="💼")
 st.title("💼 Chuyên Gia Kinh Doanh AI")
 st.caption("Hỏi bất kỳ điều gì về kinh tế, tài chính, khởi nghiệp...")
 
-# Lưu lịch sử chat trong session
+# lưu lịch sử chat
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
-# Hiển thị lịch sử
+# hiện thị lịch sử chat
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
-# Xử lý input
+# xử lý input
 if prompt := st.chat_input("Ví dụ: 'Làm sao tính điểm hòa vốn?'"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
@@ -62,3 +60,4 @@ if prompt := st.chat_input("Ví dụ: 'Làm sao tính điểm hòa vốn?'"):
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
     st.chat_message("assistant").write(reply)
+
