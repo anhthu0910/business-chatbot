@@ -37,7 +37,7 @@ def ask_ai(prompt):
         return f"❌ Lỗi kết nối: {str(e)}"
 
 # giao diện
-st.set_page_config(page_title="Chuyên Gia Kinh Doanh AI", page_icon="💼")
+st.set_page_config(page_title="CHUYÊN GIA KINH DOANH AI", page_icon="💼")
 st.title("Chuyên Gia Kinh Doanh AI")
 st.caption("Hỏi bất kỳ điều gì về kinh tế, tài chính, khởi nghiệp...")
 
@@ -60,5 +60,6 @@ if prompt := st.chat_input("Ví dụ: 'Làm thế nào để tính điểm hòa 
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
     st.chat_message("assistant").write(reply)
+
 
 
