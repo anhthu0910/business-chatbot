@@ -38,7 +38,7 @@ def ask_ai(prompt):
 
 # giao diện
 st.set_page_config(page_title="Chuyên Gia Kinh Doanh AI", page_icon="💼")
-st.title("💼 Chuyên Gia Kinh Doanh AI")
+st.title("Chuyên Gia Kinh Doanh AI")
 st.caption("Hỏi bất kỳ điều gì về kinh tế, tài chính, khởi nghiệp...")
 
 # lưu lịch sử chat
@@ -50,7 +50,7 @@ for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
 # xử lý input
-if prompt := st.chat_input("Ví dụ: 'Làm sao tính điểm hòa vốn?'"):
+if prompt := st.chat_input("Ví dụ: 'Làm thế nào để tính điểm hòa vốn?'"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
@@ -60,4 +60,5 @@ if prompt := st.chat_input("Ví dụ: 'Làm sao tính điểm hòa vốn?'"):
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
     st.chat_message("assistant").write(reply)
+
 
