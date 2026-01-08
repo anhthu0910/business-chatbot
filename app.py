@@ -32,9 +32,9 @@ def ask_ai(prompt):
         if response.status_code == 200:
             return response.json()["choices"][0]["message"]["content"]
         else:
-            return f"❌ Lỗi API ({response.status_code}): {response.text}"
+            return f"Lỗi API ({response.status_code}): {response.text}"
     except Exception as e:
-        return f"❌ Lỗi kết nối: {str(e)}"
+        return f"Lỗi kết nối: {str(e)}"
 
 # giao diện
 st.set_page_config(page_title="CHUYÊN GIA KINH DOANH AI", page_icon="💼")
@@ -60,6 +60,7 @@ if prompt := st.chat_input("Ví dụ: 'Làm thế nào để tính điểm hòa 
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
     st.chat_message("assistant").write(reply)
+
 
 
 
